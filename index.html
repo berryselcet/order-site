@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>團購訂單查詢</title>
+<style>
+body{
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+background:#f5f6fa;
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+margin:0;
+}
+.card{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
+width:320px;
+text-align:center;
+}
+input{
+width:90%;
+padding:10px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+background:#111;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+.result{
+margin-top:20px;
+text-align:left;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>訂單查詢</h2>
+<input id="name" placeholder="輸入名字">
+<br>
+<button onclick="search()">查詢</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<script>
+const orders=[
+{name:"bluefeather",item:"抱盒×1",price:"NT$305",status:"未付款"},
+{name:"Mingzhen",item:"煉獄立牌×1",price:"NT$140",status:"已完成"},
+{name:"李宜柔",item:"折月徽章×1",price:"NT$260",status:"已完成"},
+{name:"kyoka kawa",item:"折疊徽章×1",price:"NT$345",status:"未完成"}
+];
+
+function search(){
+let name=document.getElementById("name").value.trim();
+let order=orders.find(o=>o.name===name);
+
+if(order){
+document.getElementById("result").innerHTML=
+`<b>購買項目</b><br>${order.item}<br><br>
+<b>應匯金額</b><br>${order.price}<br><br>
+<b>付款狀態</b><br>${order.status}`;
+}else{
+document.getElementById("result").innerHTML="找不到訂單";
+}
+}
+</script>
+
+</body>
+</html>
